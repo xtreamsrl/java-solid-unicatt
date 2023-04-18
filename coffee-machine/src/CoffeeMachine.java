@@ -1,6 +1,6 @@
 
 // Single Responsibility Principle violation: Multiple responsibilities
-public class CoffeeMachine {
+public class CoffeeMachine implements CoffeeActions {
     int waterLevel;
     int coffeeBeansLevel;
     int milkLevel;
@@ -22,10 +22,11 @@ public class CoffeeMachine {
         }
     }
 
-    public CoffeeMachine(int waterLevel, int coffeeBeansLevel, int milkLevel) {
+    public CoffeeMachine(int waterLevel, int coffeeBeansLevel, int milkLevel, long availableChange) {
         this.waterLevel = waterLevel;
         this.coffeeBeansLevel = coffeeBeansLevel;
         this.milkLevel = milkLevel;
+        this.availableChange = availableChange;
     }
 
     // Open/Closed Principle violation: Requires modifying the class to add new/remove drink types
@@ -42,10 +43,45 @@ public class CoffeeMachine {
     }
 
     public void orderDrink(DrinkType drinkType) {
+        switch (drinkType) {
+            case COFFEE -> this.makeCoffee();
+            case CAPPUCCINO -> this.makeCappuccino();
+        }
         if(canMakeDrink(drinkType)) {
             this.userCredit -= drinkType.getPrice();
             this.availableChange -= this.userCredit;
         }
+    }
+
+    @Override
+    public void makeCoffee() {
+        if (canMakeDrink(DrinkType.COFFEE)) {
+            waterLevel -= 50;
+            coffeeBeansLevel -= 20;
+            System.out.println("Coffee is ready!");
+        } else {
+            System.out.println("Not enough ingredients for coffee!");
+        }
+    }
+
+    @Override
+    public void makeCappuccino() {
+        throw new UnsupportedOperationException("CoffeeMachine can't make cappuccino.");
+    }
+
+    @Override
+    public void addWater(int water) {
+        waterLevel += water;
+    }
+
+    @Override
+    public void addCoffeeBeans(int coffeeBeans) {
+        coffeeBeansLevel += coffeeBeans;
+    }
+
+    @Override
+    public void addMilk(int milk) {
+        milkLevel += milk;
     }
 
 }
