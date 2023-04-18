@@ -1,3 +1,8 @@
+package bad.premium;
+
+import bad.basic.CoffeeActions;
+import bad.basic.CoffeeMachine;
+
 class CappuccinoMachine extends CoffeeMachine implements CoffeeActions {
     CappuccinoMachine(int waterLevel, int coffeeBeansLevel, int milkLevel, long availableChange) {
         super(waterLevel, coffeeBeansLevel, milkLevel, availableChange);
