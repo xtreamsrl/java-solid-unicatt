@@ -1,7 +1,5 @@
 package basic;
 
-
-// Single Responsibility Principle violation: Multiple responsibilities
 public class BasicCoffeeMachine implements CoffeeMachine {
     private static final long COFFEE_COST = 50;
 
@@ -17,8 +15,12 @@ public class BasicCoffeeMachine implements CoffeeMachine {
         this.availableChange = availableChange;
     }
 
+    protected boolean creditIsSufficient() {
+        return userCredit >= COFFEE_COST;
+    }
+
     protected boolean canMakeDrink() {
-        return waterLevel >= 50 && coffeeBeansLevel >= 20 && userCredit >= COFFEE_COST;
+        return waterLevel >= 50 && coffeeBeansLevel >= 20;
     }
 
 
@@ -29,16 +31,26 @@ public class BasicCoffeeMachine implements CoffeeMachine {
     }
 
     @Override
+    public long getUserCredit() {
+        return this.userCredit;
+    }
+
+    @Override
     public void makeCoffee() {
-        if (canMakeDrink()) {
-            this.waterLevel -= 50;
-            this.coffeeBeansLevel -= 20;
-            this.userCredit -= COFFEE_COST;
-            this.availableChange -= this.userCredit;
-            System.out.println("Coffee is ready!");
+        if (creditIsSufficient()) {
+            if (canMakeDrink()) {
+                this.waterLevel -= 50;
+                this.coffeeBeansLevel -= 20;
+                this.userCredit -= COFFEE_COST;
+                this.availableChange -= COFFEE_COST;
+                System.out.println("Coffee is ready!");
+            } else {
+                System.out.println("Not enough ingredients for coffee!");
+            }
         } else {
-            System.out.println("Not enough ingredients for coffee!");
+            System.out.println("Not enough credit for coffee! Add " + (COFFEE_COST - this.userCredit) + " cents");
         }
+
     }
 
     @Override

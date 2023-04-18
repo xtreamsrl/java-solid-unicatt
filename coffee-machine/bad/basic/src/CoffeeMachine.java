@@ -1,6 +1,5 @@
 package basic;
 
-// Interface Segregation Principle violation: Unrelated methods combined
 interface CoffeeMachine {
 
     void makeCoffee();
@@ -10,4 +9,6 @@ interface CoffeeMachine {
     void addCoffeeBeans(int coffeeBeans);
 
     void insertCoins(long amount);
+
+    long getUserCredit();
 }
