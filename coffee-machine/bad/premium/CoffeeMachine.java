@@ -1,17 +1,15 @@
-package basic;
+package premium;
 
-public class BasicCoffeeMachine implements CoffeeMachine {
-    private static final long COFFEE_COST = 50;
+public class CoffeeMachine {
+    private static final long COFFEE_COST = 0;
 
     int waterLevel;
     int coffeeBeansLevel;
-
-
     long availableChange; // cents
     long userCredit; // cents
 
 
-    public BasicCoffeeMachine(int waterLevel, int coffeeBeansLevel, long availableChange) {
+    public CoffeeMachine(int waterLevel, int coffeeBeansLevel, long availableChange) {
         this.waterLevel = waterLevel;
         this.coffeeBeansLevel = coffeeBeansLevel;
         this.availableChange = availableChange;
@@ -26,24 +24,22 @@ public class BasicCoffeeMachine implements CoffeeMachine {
     }
 
 
-    @Override
     public void insertCoins(long amount) {
-        this.userCredit += amount;
+        this.setUserCredit(this.userCredit += amount);
         this.availableChange += amount;
     }
 
-    @Override
     public long getUserCredit() {
         return this.userCredit;
     }
 
-    @Override
+
     public void makeCoffee() {
         if (creditIsSufficient()) {
             if (canMakeDrink()) {
                 this.waterLevel -= 50;
                 this.coffeeBeansLevel -= 20;
-                this.userCredit -= COFFEE_COST;
+                this.setUserCredit(this.userCredit - COFFEE_COST);
                 this.availableChange -= COFFEE_COST;
                 System.out.println("Coffee is ready!");
             } else {
@@ -55,12 +51,18 @@ public class BasicCoffeeMachine implements CoffeeMachine {
 
     }
 
-    @Override
+    public void setUserCredit(long userCredit) {
+        if(userCredit < 0) {
+            throw new IllegalArgumentException("User credit must be greater than zero");
+        }
+        this.userCredit = userCredit;
+    }
+
     public void addWater(int water) {
         waterLevel += water;
     }
 
-    @Override
+
     public void addCoffeeBeans(int coffeeBeans) {
         coffeeBeansLevel += coffeeBeans;
     }
