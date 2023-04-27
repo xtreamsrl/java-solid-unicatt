@@ -9,6 +9,11 @@ class CappuccinoMachine extends CoffeeMachine {
     }
 
     @Override
+    protected long getCoffeeCost() {
+        return 0;
+    }
+
+    @Override
     protected boolean canMakeDrink() {
         return waterLevel >= 100 && coffeeBeansLevel >= 20 && milkLevel >= 50;
     }

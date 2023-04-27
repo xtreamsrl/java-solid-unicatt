@@ -1,7 +1,6 @@
 package premium;
 
 public class CoffeeMachine {
-    private static final long COFFEE_COST = 0;
 
     int waterLevel;
     int coffeeBeansLevel;
@@ -15,8 +14,12 @@ public class CoffeeMachine {
         this.availableChange = availableChange;
     }
 
+    protected long getCoffeeCost() {
+        return 50;
+    }
+
     protected boolean creditIsSufficient() {
-        return userCredit >= COFFEE_COST;
+        return userCredit >= getCoffeeCost();
     }
 
     protected boolean canMakeDrink() {
@@ -39,14 +42,14 @@ public class CoffeeMachine {
             if (canMakeDrink()) {
                 this.waterLevel -= 50;
                 this.coffeeBeansLevel -= 20;
-                this.setUserCredit(this.userCredit - COFFEE_COST);
-                this.availableChange -= COFFEE_COST;
+                this.setUserCredit(this.userCredit - getCoffeeCost());
+                this.availableChange -= getCoffeeCost();
                 System.out.println("Coffee is ready!");
             } else {
                 System.out.println("Not enough ingredients for coffee!");
             }
         } else {
-            System.out.println("Not enough credit for coffee! Add " + (COFFEE_COST - this.userCredit) + " cents");
+            System.out.println("Not enough credit for coffee! Add " + (getCoffeeCost() - this.userCredit) + " cents");
         }
 
     }
