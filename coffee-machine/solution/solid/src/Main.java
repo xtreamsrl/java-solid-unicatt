@@ -18,7 +18,7 @@ public class Main {
     }
 
     private static void handleCoffee() {
-        CoffeeMachine coffeeMachine = new CoffeeMachine(500, 100,  200);
+        PaidCoffeeMachine coffeeMachine = new PaidCoffeeMachine(new CoffeeMachine(500, 100), 200);
 
         Scanner scanner = new Scanner(System.in);
         CoffeeCommand input;
