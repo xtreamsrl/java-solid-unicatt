@@ -1,24 +1,26 @@
 package solid;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CoffeeMachine {
 
-    int waterLevel;
-    int coffeeBeansLevel;
+    private final Map<IngredientType, Integer> ingredients = new HashMap<>();
 
 
     public CoffeeMachine(int waterLevel, int coffeeBeansLevel) {
-        this.waterLevel = waterLevel;
-        this.coffeeBeansLevel = coffeeBeansLevel;
+        this.ingredients.put(IngredientType.WATER, waterLevel);
+        this.ingredients.put(IngredientType.COFFEE_BEAN, coffeeBeansLevel);
     }
 
     protected boolean canMakeDrink() {
-        return waterLevel >= 50 && coffeeBeansLevel >= 20;
+        return this.getQuantity(IngredientType.WATER) >= 50 && this.getQuantity(IngredientType.COFFEE_BEAN) >= 20;
     }
 
     public void makeCoffee() {
         if (canMakeDrink()) {
-            this.waterLevel -= 50;
-            this.coffeeBeansLevel -= 20;
+            this.subtractIngredient(IngredientType.WATER, 50);
+            this.subtractIngredient(IngredientType.COFFEE_BEAN, 20);
             System.out.println("Coffee is ready!");
         } else {
             System.out.println("Not enough ingredients for coffee!");
@@ -26,13 +28,21 @@ public class CoffeeMachine {
     }
 
 
-    public void addWater(int water) {
-        waterLevel += water;
+    public void addIngredient(IngredientType ingredient, int quantity) {
+        var initialQuantityForIngredient = this.ingredients.getOrDefault(ingredient, 0);
+        this.ingredients.put(ingredient, initialQuantityForIngredient + quantity);
     }
 
+    public void subtractIngredient(IngredientType ingredient, int quantity) {
+        var initialQuantityForIngredient = this.ingredients.getOrDefault(ingredient, 0);
+        if (initialQuantityForIngredient < quantity) {
+            throw new IllegalStateException("Cannot subtract " + quantity + "from ingredient " + ingredient + " " + initialQuantityForIngredient);
+        }
+        this.ingredients.put(ingredient, initialQuantityForIngredient - quantity);
+    }
 
-    public void addCoffeeBeans(int coffeeBeans) {
-        coffeeBeansLevel += coffeeBeans;
+    public int getQuantity(IngredientType ingredient) {
+        return this.ingredients.getOrDefault(ingredient, 0);
     }
 
 }

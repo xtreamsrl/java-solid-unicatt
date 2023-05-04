@@ -46,12 +46,8 @@ public class PaidCoffeeMachine {
         }
     }
 
-    public void addWater(int water) {
-       coffeeMachine.addWater(water);
-    }
-
-    public void addCoffeeBeans(int coffeeBeans) {
-        coffeeMachine.addCoffeeBeans(coffeeBeans);
+    public void addIngredient(IngredientType ingredient, int water) {
+       coffeeMachine.addIngredient(ingredient, water);
     }
 
 }

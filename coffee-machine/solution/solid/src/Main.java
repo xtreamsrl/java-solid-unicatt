@@ -35,14 +35,14 @@ public class Main {
                         System.out.println("Enter the amount of water to add: ");
                         int water = scanner.nextInt();
                         scanner.nextLine();
-                        coffeeMachine.addWater(water);
+                        coffeeMachine.addIngredient(IngredientType.WATER, water);
                         System.out.println("Water added.");
                     }
                     case ADD_BEANS -> {
                         System.out.println("Enter the amount of coffee beans to add: ");
                         int beans = scanner.nextInt();
                         scanner.nextLine();
-                        coffeeMachine.addCoffeeBeans(beans);
+                        coffeeMachine.addIngredient(IngredientType.COFFEE_BEAN, beans);
                         System.out.println("Coffee beans added.");
                     }
                     case INSERT_COIN -> {
@@ -82,21 +82,21 @@ public class Main {
                         System.out.println("Enter the amount of water to add: ");
                         int water = scanner.nextInt();
                         scanner.nextLine();
-                        coffeeMachine.addWater(water);
+                        coffeeMachine.addIngredient(IngredientType.WATER, water);
                         System.out.println("Water added.");
                     }
                     case ADD_BEANS -> {
                         System.out.println("Enter the amount of coffee beans to add: ");
                         int beans = scanner.nextInt();
                         scanner.nextLine();
-                        coffeeMachine.addCoffeeBeans(beans);
+                        coffeeMachine.addIngredient(IngredientType.COFFEE_BEAN, beans);
                         System.out.println("Coffee beans added.");
                     }
                     case ADD_MILK -> {
                         System.out.println("Enter the amount of milk to add: ");
                         int milk = scanner.nextInt();
                         scanner.nextLine();
-                        coffeeMachine.addMilk(milk);
+                        coffeeMachine.addIngredient(IngredientType.MILK, milk);
                         System.out.println("Milk added.");
                     }
                     case EXIT -> {
