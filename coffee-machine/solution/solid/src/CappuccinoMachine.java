@@ -19,9 +19,8 @@ class CappuccinoMachine extends CoffeeMachine {
             this.subtractIngredient(IngredientType.WATER, 100);
             this.subtractIngredient(IngredientType.COFFEE_BEAN, 20);
             this.subtractIngredient(IngredientType.MILK, 50);
-            System.out.println("Cappuccino is ready!");
         } else {
-            System.out.println("Not enough ingredients for cappuccino!");
+            throw new NotEnoughIngredientsException();
         }
     }
 

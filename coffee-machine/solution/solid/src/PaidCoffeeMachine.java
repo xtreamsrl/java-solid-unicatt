@@ -42,7 +42,7 @@ public class PaidCoffeeMachine {
             this.availableChange -= getCoffeeCost();
             coffeeMachine.makeCoffee();
         } else {
-            System.out.println("Not enough credit for coffee! Add " + (getCoffeeCost() - this.userCredit) + " cents");
+            throw new NotEnoughCreditException(getCoffeeCost(), this.userCredit);
         }
     }
 

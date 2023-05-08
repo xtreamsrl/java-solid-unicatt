@@ -21,9 +21,8 @@ public class CoffeeMachine {
         if (canMakeDrink()) {
             this.subtractIngredient(IngredientType.WATER, 50);
             this.subtractIngredient(IngredientType.COFFEE_BEAN, 20);
-            System.out.println("Coffee is ready!");
         } else {
-            System.out.println("Not enough ingredients for coffee!");
+            throw new NotEnoughIngredientsException();
         }
     }
 
