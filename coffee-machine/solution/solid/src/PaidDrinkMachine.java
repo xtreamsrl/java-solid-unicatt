@@ -1,13 +1,15 @@
 package solid;
 
-public class PaidCoffeeMachine {
-    private final CoffeeMachine coffeeMachine;
+import java.util.Map;
+
+public class PaidDrinkMachine implements DrinkMachine {
+    private final DrinkMachineImpl drinkMachine;
 
     long availableChange; // cents
     long userCredit; // cents
 
-    public PaidCoffeeMachine(CoffeeMachine coffeeMachine, long availableChange) {
-        this.coffeeMachine = coffeeMachine;
+    public PaidDrinkMachine(DrinkMachineImpl drinkMachine, long availableChange) {
+        this.drinkMachine = drinkMachine;
         this.availableChange = availableChange;
     }
 
@@ -36,18 +38,25 @@ public class PaidCoffeeMachine {
         this.userCredit = userCredit;
     }
 
-    public void makeCoffee() {
-        if(creditIsSufficient() && coffeeMachine.canMakeDrink()) {
-            this.setUserCredit(this.userCredit - getCoffeeCost());
-            this.availableChange -= getCoffeeCost();
-            coffeeMachine.makeCoffee();
-        } else {
+    @Override
+    public void makeDrink(Drink drink) {
+        if(!creditIsSufficient()) {
             throw new NotEnoughCreditException(getCoffeeCost(), this.userCredit);
         }
+
+        drinkMachine.makeDrink(drink);
+        this.setUserCredit(this.userCredit - getCoffeeCost());
+        this.availableChange -= getCoffeeCost();
     }
 
-    public void addIngredient(IngredientType ingredient, int water) {
-       coffeeMachine.addIngredient(ingredient, water);
+    @Override
+    public void addIngredient(IngredientType ingredient, int quantity) {
+       drinkMachine.addIngredient(ingredient, quantity);
+    }
+
+    @Override
+    public Map<IngredientType, Integer> getAvailableIngredients() {
+        return drinkMachine.getAvailableIngredients();
     }
 
 }

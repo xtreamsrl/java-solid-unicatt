@@ -18,7 +18,10 @@ public class Main {
     }
 
     private static void handleCoffee() {
-        PaidCoffeeMachine coffeeMachine = new PaidCoffeeMachine(new CoffeeMachine(500, 100), 200);
+        var drinkMachine = new DrinkMachineImpl();
+        drinkMachine.addIngredient(IngredientType.WATER, 500);
+        drinkMachine.addIngredient(IngredientType.COFFEE_BEAN, 100);
+        PaidDrinkMachine paidDrinkMachine = new PaidDrinkMachine(drinkMachine, 200);
 
         Scanner scanner = new Scanner(System.in);
         CoffeeCommand input;
@@ -31,7 +34,7 @@ public class Main {
                 switch (input) {
                     case COFFEE -> {
                         try {
-                            coffeeMachine.makeCoffee();
+                            paidDrinkMachine.makeDrink(new Coffee());
                             System.out.println("Coffee is ready!");
                         } catch (NotEnoughIngredientsException e) {
                             System.out.println("Not enough ingredients for coffee!");
@@ -44,23 +47,23 @@ public class Main {
                         System.out.println("Enter the amount of water to add: ");
                         int water = scanner.nextInt();
                         scanner.nextLine();
-                        coffeeMachine.addIngredient(IngredientType.WATER, water);
+                        paidDrinkMachine.addIngredient(IngredientType.WATER, water);
                         System.out.println("Water added.");
                     }
                     case ADD_BEANS -> {
                         System.out.println("Enter the amount of coffee beans to add: ");
                         int beans = scanner.nextInt();
                         scanner.nextLine();
-                        coffeeMachine.addIngredient(IngredientType.COFFEE_BEAN, beans);
+                        paidDrinkMachine.addIngredient(IngredientType.COFFEE_BEAN, beans);
                         System.out.println("Coffee beans added.");
                     }
                     case INSERT_COIN -> {
                         System.out.print("Enter a coin: ");
                         long amount = scanner.nextLong();
-                        coffeeMachine.insertCoins(amount);
+                        paidDrinkMachine.insertCoins(amount);
                         scanner.nextLine();
                         System.out.println("Inserted " + amount + " cents");
-                        System.out.println("Your credit is now " + coffeeMachine.getUserCredit() + " cents");
+                        System.out.println("Your credit is now " + paidDrinkMachine.getUserCredit() + " cents");
                     }
                     case EXIT -> {
                         scanner.close();
@@ -74,7 +77,10 @@ public class Main {
     }
 
     private static void handleCappuccino() {
-        CappuccinoMachine coffeeMachine = new CappuccinoMachine(500, 100,  200);
+        DrinkMachine drinkMachine = new DrinkMachineImpl();
+        drinkMachine.addIngredient(IngredientType.WATER, 500);
+        drinkMachine.addIngredient(IngredientType.COFFEE_BEAN, 100);
+        drinkMachine.addIngredient(IngredientType.MILK, 200);
 
         Scanner scanner = new Scanner(System.in);
         CoffeeCommand input;
@@ -87,7 +93,7 @@ public class Main {
                 switch (input) {
                     case COFFEE -> {
                         try {
-                            coffeeMachine.makeDrink(new Coffee());
+                            drinkMachine.makeDrink(new Coffee());
                             System.out.println("Coffee is ready!");
                         } catch (NotEnoughIngredientsException e) {
                             System.out.println("Not enough ingredients for coffee!");
@@ -95,7 +101,7 @@ public class Main {
                     }
                     case CAPPUCCINO -> {
                         try {
-                            coffeeMachine.makeDrink(new Cappuccino());
+                            drinkMachine.makeDrink(new Cappuccino());
                             System.out.println("Cappuccino is ready!");
                         } catch (NotEnoughIngredientsException e) {
                             System.out.println("Not enough ingredients for cappuccino!");
@@ -106,21 +112,21 @@ public class Main {
                         System.out.println("Enter the amount of water to add: ");
                         int water = scanner.nextInt();
                         scanner.nextLine();
-                        coffeeMachine.addIngredient(IngredientType.WATER, water);
+                        drinkMachine.addIngredient(IngredientType.WATER, water);
                         System.out.println("Water added.");
                     }
                     case ADD_BEANS -> {
                         System.out.println("Enter the amount of coffee beans to add: ");
                         int beans = scanner.nextInt();
                         scanner.nextLine();
-                        coffeeMachine.addIngredient(IngredientType.COFFEE_BEAN, beans);
+                        drinkMachine.addIngredient(IngredientType.COFFEE_BEAN, beans);
                         System.out.println("Coffee beans added.");
                     }
                     case ADD_MILK -> {
                         System.out.println("Enter the amount of milk to add: ");
                         int milk = scanner.nextInt();
                         scanner.nextLine();
-                        coffeeMachine.addIngredient(IngredientType.MILK, milk);
+                        drinkMachine.addIngredient(IngredientType.MILK, milk);
                         System.out.println("Milk added.");
                     }
                     case EXIT -> {
