@@ -87,7 +87,7 @@ public class Main {
                 switch (input) {
                     case COFFEE -> {
                         try {
-                            coffeeMachine.makeCoffee();
+                            coffeeMachine.makeDrink(new Coffee());
                             System.out.println("Coffee is ready!");
                         } catch (NotEnoughIngredientsException e) {
                             System.out.println("Not enough ingredients for coffee!");
@@ -95,7 +95,7 @@ public class Main {
                     }
                     case CAPPUCCINO -> {
                         try {
-                            coffeeMachine.makeCappuccino();
+                            coffeeMachine.makeDrink(new Cappuccino());
                             System.out.println("Cappuccino is ready!");
                         } catch (NotEnoughIngredientsException e) {
                             System.out.println("Not enough ingredients for cappuccino!");
