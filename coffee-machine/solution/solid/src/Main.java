@@ -21,7 +21,7 @@ public class Main {
         var drinkMachine = new DrinkMachineImpl();
         drinkMachine.addIngredient(IngredientType.WATER, 500);
         drinkMachine.addIngredient(IngredientType.COFFEE_BEAN, 100);
-        PaidDrinkMachine paidDrinkMachine = new PaidDrinkMachine(drinkMachine, 200);
+        PaidCoffeeMachine paidCoffeeMachine = new PaidCoffeeMachine(drinkMachine);
 
         Scanner scanner = new Scanner(System.in);
         CoffeeCommand input;
@@ -34,7 +34,7 @@ public class Main {
                 switch (input) {
                     case COFFEE -> {
                         try {
-                            paidDrinkMachine.makeDrink(new Coffee());
+                            paidCoffeeMachine.makeDrink(new Coffee());
                             System.out.println("Coffee is ready!");
                         } catch (NotEnoughIngredientsException e) {
                             System.out.println("Not enough ingredients for coffee!");
@@ -47,23 +47,23 @@ public class Main {
                         System.out.println("Enter the amount of water to add: ");
                         int water = scanner.nextInt();
                         scanner.nextLine();
-                        paidDrinkMachine.addIngredient(IngredientType.WATER, water);
+                        paidCoffeeMachine.addIngredient(IngredientType.WATER, water);
                         System.out.println("Water added.");
                     }
                     case ADD_BEANS -> {
                         System.out.println("Enter the amount of coffee beans to add: ");
                         int beans = scanner.nextInt();
                         scanner.nextLine();
-                        paidDrinkMachine.addIngredient(IngredientType.COFFEE_BEAN, beans);
+                        paidCoffeeMachine.addIngredient(IngredientType.COFFEE_BEAN, beans);
                         System.out.println("Coffee beans added.");
                     }
                     case INSERT_COIN -> {
                         System.out.print("Enter a coin: ");
                         long amount = scanner.nextLong();
-                        paidDrinkMachine.insertCoins(amount);
+                        paidCoffeeMachine.insertCoins(amount);
                         scanner.nextLine();
                         System.out.println("Inserted " + amount + " cents");
-                        System.out.println("Your credit is now " + paidDrinkMachine.getUserCredit() + " cents");
+                        System.out.println("Your credit is now " + paidCoffeeMachine.getUserCredit() + " cents");
                     }
                     case EXIT -> {
                         scanner.close();
