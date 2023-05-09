@@ -4,14 +4,13 @@ public class CoffeeMachine {
 
     int waterLevel;
     int coffeeBeansLevel;
-    long availableChange; // cents
+
     long userCredit; // cents
 
 
-    public CoffeeMachine(int waterLevel, int coffeeBeansLevel, long availableChange) {
+    public CoffeeMachine(int waterLevel, int coffeeBeansLevel) {
         this.waterLevel = waterLevel;
         this.coffeeBeansLevel = coffeeBeansLevel;
-        this.availableChange = availableChange;
     }
 
     protected long getCoffeeCost() {
@@ -29,7 +28,6 @@ public class CoffeeMachine {
 
     public void insertCoins(long amount) {
         this.setUserCredit(this.userCredit += amount);
-        this.availableChange += amount;
     }
 
     public long getUserCredit() {
@@ -43,7 +41,6 @@ public class CoffeeMachine {
                 this.waterLevel -= 50;
                 this.coffeeBeansLevel -= 20;
                 this.setUserCredit(this.userCredit - getCoffeeCost());
-                this.availableChange -= getCoffeeCost();
                 System.out.println("Coffee is ready!");
             } else {
                 System.out.println("Not enough ingredients for coffee!");
