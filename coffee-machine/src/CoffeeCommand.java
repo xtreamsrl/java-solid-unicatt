@@ -4,6 +4,8 @@ enum CoffeeCommand {
     ADD_WATER,
     ADD_BEANS,
     INSERT_COIN,
-    EXIT;
+    EXIT,
+    ADD_MILK,
+    CAPPUCCINO;
 
 }
