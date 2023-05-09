@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        CoffeeMachine coffeeMachine = new CoffeeMachine(500, 100,  200);
+        CoffeeMachine coffeeMachine = new CoffeeMachine(500, 100);
 
         Scanner scanner = new Scanner(System.in);
         CoffeeCommand input;

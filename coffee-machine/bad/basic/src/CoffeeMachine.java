@@ -18,10 +18,6 @@ public class CoffeeMachine {
         return userCredit >= COFFEE_COST;
     }
 
-    protected boolean canMakeDrink() {
-        return waterLevel >= 50 && coffeeBeansLevel >= 20;
-    }
-
 
     public void insertCoins(long amount) {
         this.userCredit += amount;
@@ -34,7 +30,7 @@ public class CoffeeMachine {
 
     public void makeCoffee() {
         if (creditIsSufficient()) {
-            if (canMakeDrink()) {
+            if (canMakeCoffee()) {
                 this.waterLevel -= 50;
                 this.coffeeBeansLevel -= 20;
                 this.userCredit -= COFFEE_COST;
@@ -46,6 +42,10 @@ public class CoffeeMachine {
             System.out.println("Not enough credit for coffee! Add " + (COFFEE_COST - this.userCredit) + " cents");
         }
 
+    }
+
+    private boolean canMakeCoffee() {
+        return waterLevel >= 50 && coffeeBeansLevel >= 20;
     }
 
     public void addWater(int water) {
