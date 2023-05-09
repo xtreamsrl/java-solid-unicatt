@@ -1,11 +1,10 @@
-package basic;
+package initial;
 
 public class CoffeeMachine {
 
-    private static final long COFFEE_COST = 50;
-
     int waterLevel;
     int coffeeBeansLevel;
+
     long userCredit; // cents
 
 
@@ -13,44 +12,56 @@ public class CoffeeMachine {
         this.waterLevel = waterLevel;
         this.coffeeBeansLevel = coffeeBeansLevel;
     }
-    
+
+    protected long getCoffeeCost() {
+        return 50;
+    }
+
     protected boolean creditIsSufficient() {
-        return userCredit >= COFFEE_COST;
+        return userCredit >= getCoffeeCost();
+    }
+
+    protected boolean canMakeDrink() {
+        return waterLevel >= 50 && coffeeBeansLevel >= 20;
     }
 
 
     public void insertCoins(long amount) {
-        this.userCredit += amount;
+        this.setUserCredit(this.userCredit += amount);
     }
-
 
     public long getUserCredit() {
         return this.userCredit;
     }
 
+
     public void makeCoffee() {
         if (creditIsSufficient()) {
-            if (canMakeCoffee()) {
+            if (canMakeDrink()) {
                 this.waterLevel -= 50;
                 this.coffeeBeansLevel -= 20;
-                this.userCredit -= COFFEE_COST;
+                this.setUserCredit(this.userCredit - getCoffeeCost());
                 System.out.println("Coffee is ready!");
             } else {
                 System.out.println("Not enough ingredients for coffee!");
             }
         } else {
-            System.out.println("Not enough credit for coffee! Add " + (COFFEE_COST - this.userCredit) + " cents");
+            System.out.println("Not enough credit for coffee! Add " + (getCoffeeCost() - this.userCredit) + " cents");
         }
 
     }
 
-    private boolean canMakeCoffee() {
-        return waterLevel >= 50 && coffeeBeansLevel >= 20;
+    public void setUserCredit(long userCredit) {
+        if(userCredit < 0) {
+            throw new IllegalArgumentException("User credit must be greater than zero");
+        }
+        this.userCredit = userCredit;
     }
 
     public void addWater(int water) {
         waterLevel += water;
     }
+
 
     public void addCoffeeBeans(int coffeeBeans) {
         coffeeBeansLevel += coffeeBeans;
