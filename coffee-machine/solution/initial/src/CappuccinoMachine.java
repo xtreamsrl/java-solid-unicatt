@@ -4,7 +4,7 @@ package initial;
 class CappuccinoMachine extends CoffeeMachine {
     int milkLevel;
     CappuccinoMachine(int waterLevel, int coffeeBeansLevel, int milkLevel) {
-        super(waterLevel, coffeeBeansLevel, 0);
+        super(waterLevel, coffeeBeansLevel);
         this.milkLevel = milkLevel;
     }
 
