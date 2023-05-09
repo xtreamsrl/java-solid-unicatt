@@ -1,4 +1,3 @@
-package basic;
 
 enum CoffeeCommand {
     COFFEE,

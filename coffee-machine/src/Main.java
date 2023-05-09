@@ -1,5 +1,3 @@
-package basic;
-
 import java.util.Scanner;
 
 public class Main {
@@ -34,8 +32,8 @@ public class Main {
                     case INSERT_COIN -> {
                         System.out.print("Enter a coin: ");
                         long amount = scanner.nextLong();
-                        coffeeMachine.insertCoins(amount);
                         scanner.nextLine();
+                        coffeeMachine.insertCoins(amount);
                         System.out.println("Inserted " + amount + " cents");
                         System.out.println("Your credit is now " + coffeeMachine.getUserCredit() + " cents");
                     }
