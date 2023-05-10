@@ -18,21 +18,6 @@ public class CappuccinoMachine extends CoffeeMachine {
         }
     }
 
-    @Override
-    public long getCoffeeCost() {
-        return 0;
-    }
-
-    @Override
-    public void insertCoins(long amount) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public long getUserCredit() {
-        throw new UnsupportedOperationException();
-    }
-
     private boolean canMakeCappuccino() {
         return this.waterLevel >= 100 && this.coffeeBeansLevel >= 20 && this.milkLevel >= 50;
     }

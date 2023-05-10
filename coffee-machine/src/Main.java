@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        CappuccinoMachine cappuccinoMachine = new CappuccinoMachine(500, 100, 100);
+        PaidCoffeeMachine coffeeMachine = new PaidCoffeeMachine(500, 100);
 
         Scanner scanner = new Scanner(System.in);
         CoffeeCommand input;
@@ -13,36 +13,36 @@ public class Main {
                 input = CoffeeCommand.valueOf(scanner.nextLine().toUpperCase());
 
                 switch (input) {
-                    case COFFEE -> cappuccinoMachine.makeCoffee();
-                    case CAPPUCCINO -> cappuccinoMachine.makeCappuccino();
+                    case COFFEE -> coffeeMachine.makeCoffee();
+//                    case CAPPUCCINO -> cappuccinoMachine.makeCappuccino();
                     case ADD_WATER -> {
                         System.out.println("Enter the amount of water to add: ");
                         int water = scanner.nextInt();
                         scanner.nextLine();
-                        cappuccinoMachine.addWater(water);
+                        coffeeMachine.addWater(water);
                         System.out.println("Water added.");
                     }
                     case ADD_BEANS -> {
                         System.out.println("Enter the amount of coffee beans to add: ");
                         int beans = scanner.nextInt();
                         scanner.nextLine();
-                        cappuccinoMachine.addCoffeeBeans(beans);
+                        coffeeMachine.addCoffeeBeans(beans);
                         System.out.println("Coffee beans added.");
                     }
-                    case ADD_MILK -> {
-                        System.out.println("Enter the amount of milk to add: ");
-                        int milk = scanner.nextInt();
-                        scanner.nextLine();
-                        cappuccinoMachine.addMilk(milk);
-                        System.out.println("Milk added.");
-                    }
+//                    case ADD_MILK -> {
+//                        System.out.println("Enter the amount of milk to add: ");
+//                        int milk = scanner.nextInt();
+//                        scanner.nextLine();
+//                        cappuccinoMachine.addMilk(milk);
+//                        System.out.println("Milk added.");
+//                    }
                     case INSERT_COIN -> {
                         System.out.print("Enter a coin: ");
                         long amount = scanner.nextLong();
                         scanner.nextLine();
-                        cappuccinoMachine.insertCoins(amount);
+                        coffeeMachine.insertCoins(amount);
                         System.out.println("Inserted " + amount + " cents");
-                        System.out.println("Your credit is now " + cappuccinoMachine.getUserCredit() + " cents");
+                        System.out.println("Your credit is now " + coffeeMachine.getUserCredit() + " cents");
                     }
                     case EXIT -> {
                         scanner.close();
