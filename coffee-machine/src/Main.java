@@ -29,14 +29,14 @@ public class Main {
                         coffeeMachine.addCoffeeBeans(beans);
                         System.out.println("Coffee beans added.");
                     }
-                    case INSERT_COIN -> {
-                        System.out.print("Enter a coin: ");
-                        long amount = scanner.nextLong();
-                        scanner.nextLine();
-                        coffeeMachine.insertCoins(amount);
-                        System.out.println("Inserted " + amount + " cents");
-                        System.out.println("Your credit is now " + coffeeMachine.getUserCredit() + " cents");
-                    }
+//                    case INSERT_COIN -> {
+//                        System.out.print("Enter a coin: ");
+//                        long amount = scanner.nextLong();
+//                        scanner.nextLine();
+//                        coffeeMachine.insertCoins(amount);
+//                        System.out.println("Inserted " + amount + " cents");
+//                        System.out.println("Your credit is now " + coffeeMachine.getUserCredit() + " cents");
+//                    }
                     case EXIT -> {
                         scanner.close();
                         System.exit(0);
