@@ -1,12 +1,12 @@
 
 import java.util.Map;
 
-public class PaidCoffeeMachine implements DrinkMachine {
+public class PaidDrinkMachine implements DrinkMachine {
     private final DrinkMachineImpl drinkMachine;
 
     long userCredit; // cents
 
-    public PaidCoffeeMachine(DrinkMachineImpl drinkMachine) {
+    public PaidDrinkMachine(DrinkMachineImpl drinkMachine) {
         this.drinkMachine = drinkMachine;
     }
 
@@ -21,11 +21,11 @@ public class PaidCoffeeMachine implements DrinkMachine {
     @Override
     public void makeDrink(Drink drink) {
         if(!creditIsSufficient()) {
-            throw new NotEnoughCreditException(getCoffeeCost(), this.userCredit);
+            throw new NotEnoughCreditException(getCost(), this.userCredit);
         }
 
         drinkMachine.makeDrink(drink);
-        this.userCredit -= getCoffeeCost();
+        this.userCredit -= getCost();
     }
 
     @Override
@@ -38,11 +38,11 @@ public class PaidCoffeeMachine implements DrinkMachine {
         return drinkMachine.getAvailableIngredients();
     }
 
-    protected long getCoffeeCost() {
+    protected long getCost() {
         return 50;
     }
 
     private boolean creditIsSufficient() {
-        return userCredit >= getCoffeeCost();
+        return userCredit >= getCost();
     }
 }

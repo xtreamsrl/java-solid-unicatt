@@ -5,7 +5,7 @@ public class Main {
 //        var drinkMachine = new DrinkMachineImpl();
 //        drinkMachine.addIngredient(IngredientType.WATER, 500);
 //        drinkMachine.addIngredient(IngredientType.COFFEE_BEAN, 100);
-//        PaidCoffeeMachine paidCoffeeMachine = new PaidCoffeeMachine(drinkMachine);
+//        PaidDrinkMachine paidCoffeeMachine = new PaidDrinkMachine(drinkMachine);
 
         var drinkMachine = new DrinkMachineImpl();
         drinkMachine.addIngredient(IngredientType.WATER, 500);
