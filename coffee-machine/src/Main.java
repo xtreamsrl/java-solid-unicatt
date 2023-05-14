@@ -14,6 +14,7 @@ public class Main {
 
                 switch (input) {
                     case COFFEE -> coffeeMachine.makeCoffee();
+//                    case CAPPUCCINO -> coffeeMachine.makeCappuccino();
 
                     case ADD_WATER -> {
                         System.out.println("Enter the amount of water to add: ");
@@ -29,6 +30,13 @@ public class Main {
                         coffeeMachine.addCoffeeBeans(beans);
                         System.out.println("Coffee beans added.");
                     }
+//                    case ADD_MILK -> {
+//                        System.out.println("Enter the amount of milk to add: ");
+//                        int milk = scanner.nextInt();
+//                        scanner.nextLine();
+//                        coffeeMachine.addMilk(milk);
+//                        System.out.println("Milk added.");
+//                    }
 //                    case INSERT_COIN -> {
 //                        System.out.print("Enter a coin: ");
 //                        long amount = scanner.nextLong();
