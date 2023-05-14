@@ -13,10 +13,9 @@ Nel nostro caso, applicare l'OCP comporta il porsi domande come
 1. "In futuro è possibile che ci siano altri tipi di macchinette che supportano altre bevande (cioccolata, té)?"
 2. "In futuro è possibile che non solo la macchinetta del caffé sia a pagamento?"
 3. "Tutte le bevande avranno lo stesso costo?"
-4. "Il costo della stessa bevanda è uguale in ogni macchinetta?"
 
 ### It's your turn!
 
 Per rispondere alla prima domanda trovate un refactor iniziale nella branch [refactor/drink-machine](https://github.com/xtreamsrl/java-solid-unicatt/tree/refactor/drink-machine) con cui esercitarsi:  
 - Individuare dove viene violato l'OCP e risolverlo (hint: ereditarietà)
-- Supponiamo che le domande 3 e 4 diano esito positivo: rendere la codebase sufficientemente flessibile per supportare tali evolutive.
+- Supponiamo che la domanda 3 dia esito positivo: rendere la codebase sufficientemente flessibile per supportare tale modifica.
